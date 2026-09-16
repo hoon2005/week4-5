@@ -88,7 +88,7 @@ int main()
                 printf("not balanced!\n");
             else
                 printf("balanced!\n");
-			break;
+			break;  
 		case 0:
 			break;
 		default:
@@ -104,10 +104,38 @@ int main()
 ////////////////////////////////////////////////////////////
 int balanced(char *expression)
 {
-/* add your code here */
-}
+    if (expression == NULL) {
+        return 1; 
+    }
 
-////////////////////////////////////////////////////////////
+    Stack s;
+    
+
+    int i = 0;
+    while (expression[i] != '\0') {
+        char ch = expression[i];       
+        if (ch == '(' || ch == '[' || ch == '{') {
+            push(&s, ch);
+        }      
+        else if (ch == ')' || ch == ']' || ch == '}') {            
+            if (isEmptyStack(&s)) {
+                return 1;
+            }
+
+            char topChar = peek(&s);            
+            if ((ch == ')' && topChar == '(') ||
+                (ch == ']' && topChar == '[') ||
+                (ch == '}' && topChar == '{')) {
+                pop(&s);
+            } else {
+                return 1; 
+            }
+        }
+        i++;
+    } 
+    return !isEmptyStack(&s);
+}
+////////////////////////////////////////////////////////
 
 void removeAllItemsFromStack(Stack *s)
 {

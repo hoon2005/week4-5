@@ -14,7 +14,7 @@ Purpose: Implementing the required functions for Question 3 */
 
 typedef struct _listnode{
    int item;
-   struct _listnode *next;
+   struct _listnode *next; 
 } ListNode;
 
 typedef struct _linkedlist{
@@ -104,8 +104,33 @@ int main()
 int isStackPairwiseConsecutive(Stack *s)
 {
   /* add your code here */
-}
+  	if (s == NULL){
+		return 0;
+  	}
 
+  	int size = s->ll.size;
+  	if (size % 2 != 0){
+	return 0;
+  }
+
+	Stack tempStack;
+   	tempStack.ll.head = NULL;
+   	tempStack.ll.size = 0;  
+
+   	int item;
+	int item2;
+	while(!isEmptyStack(s)){		
+			item = pop(s);
+			item2 = pop(s);
+			if(item - item2 == 1 || item2 - item == 1){
+				push(&tempStack, item);
+				push(&tempStack, item2);
+			}else{
+				return 0;
+			}
+   		
+	}  	
+}
 //////////////////////////////////////////////////////////////////////////////////
 
 void push(Stack *s, int item){

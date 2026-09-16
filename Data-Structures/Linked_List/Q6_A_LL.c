@@ -94,8 +94,8 @@ int moveMaxToFront(ListNode **ptrHead)
 
     ListNode *cur = *ptrHead;
     ListNode *Maxcur = *ptrHead;
-    ListNode *pre = NULL;
-    ListNode *maxPre = NULL;
+    ListNode *pre = NULL; //현재 노드(cur)의 뒤 노드
+    ListNode *maxPre = NULL; //최대값 노드의 뒤 노드를 저장
 
     while (cur != NULL) {
         if (cur->item > Maxcur->item) {
